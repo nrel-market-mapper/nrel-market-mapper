@@ -4,8 +4,8 @@ class NrelService
     connection.params["api_key"] = ENV["NREL_API_KEY"]
   end
 
-  def index
-    parse(connection.get("/api/solar/open_pv/installs/index"))
+  def index(params=nil)
+    parse(connection.get("/api/solar/open_pv/installs/index", params))
   end
 
   private
