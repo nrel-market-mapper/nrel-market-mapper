@@ -8,6 +8,10 @@ class NrelService
     parse(connection.get("/api/solar/open_pv/installs/index", params))
   end
 
+  def summaries
+    parse(connection.get("/api/solar/open_pv/installs/summaries"))
+  end
+
   private
 
     def connection
