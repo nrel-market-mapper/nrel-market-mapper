@@ -36,5 +36,16 @@ RSpec.describe NrelService do
         expect(result[:result][:total_installs]).to eq 483418
       end
     end
+
+    it "returns summary data for CA" do
+      VCR.use_cassette("nrel_service#summaries?state=CA") do
+        service = NrelService.new
+        result = service.summaries(state: "CA")
+
+        expect(result[:status]).to eq 200
+        expect(result[:result][:avg_cost_cap_weight]).to eq 6.117
+        expect(result[:result][:total_installs]).to eq 291518
+      end
+    end
   end
 end
