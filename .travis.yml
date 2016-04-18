@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - 2.2.2
+script:
+  - bundle install
+  - bundle exec rake db:setup
+  - bundle exec rake
+services:
+  - postgresql
