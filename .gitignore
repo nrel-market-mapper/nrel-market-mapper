@@ -17,3 +17,6 @@
 
 # Ignore cassettes
 /spec/cassettes
+
+# Ignore SimpleCov
+/coverage/**/*

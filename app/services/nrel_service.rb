@@ -1,7 +1,7 @@
 class NrelService
   def initialize
     @_connection = Faraday.new("https://developer.nrel.gov")
-    connection.params["api_key"] = ENV["NREL_API_KEY"]
+    connection.params["api_key"] = ENV["NREL_SECRET_KEY"]
   end
 
   def index(params=nil)
