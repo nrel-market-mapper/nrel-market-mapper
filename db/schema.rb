@@ -11,9 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160419212403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "states", force: :cascade do |t|
+    t.string   "abbr"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "summaries", force: :cascade do |t|
+    t.string   "year"
+    t.decimal  "avg_cost"
+    t.decimal  "capacity"
+    t.integer  "total_installs"
+    t.integer  "state_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "summaries", ["state_id"], name: "index_summaries_on_state_id", using: :btree
+
+  add_foreign_key "summaries", "states"
 end

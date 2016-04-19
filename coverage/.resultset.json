@@ -1,15 +1,25 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/helpers/application_helper.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/services/nrel_service.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/models/state.rb": [
         1,
         1,
-        4,
-        4,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/models/summary.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/services/nrel_service.rb": [
+        1,
+        1,
+        5,
+        5,
         null,
         null,
         1,
@@ -17,34 +27,53 @@
         null,
         null,
         1,
-        2,
+        3,
         null,
         null,
         1,
         null,
         1,
-        8,
+        10,
         null,
         null,
         1,
-        4,
+        5,
         null,
         null
       ],
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/controllers/states_controller.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/states_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
         1,
         1,
         null,
         null
       ],
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/controllers/application_controller.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/models/database_loader.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1461095465
+    "timestamp": 1461101304
   }
 }
