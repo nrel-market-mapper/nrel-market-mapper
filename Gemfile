@@ -18,11 +18,11 @@ group :development, :test do
   gem "launchy"
   gem "pry-rails"
   gem "vcr"
-  gem "webmock"
   gem "factory_girl_rails"
 end
 
 group :test do
+  gem "webmock"
   gem "capybara"
   gem "shoulda-matchers", "~> 3.1"
   gem "simplecov", require: false
