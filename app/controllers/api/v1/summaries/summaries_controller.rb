@@ -3,11 +3,11 @@ module Api
     module Summaries
       class SummariesController < ApiController
         def index
-          if params[:state]
-            respond_with State.find_by(abbr: params[:state]).data
-          else
-            respond_with State.find_by(abbr: "US").data
-          end
+          respond_with State.find_by(abbr: "US").data
+        end
+
+        def show
+          respond_with State.find_by(abbr: params[:state]).data
         end
       end
     end
