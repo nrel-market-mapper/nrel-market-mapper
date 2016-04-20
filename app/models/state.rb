@@ -4,4 +4,13 @@ class State < ActiveRecord::Base
   validates_presence_of :abbr
   validates_uniqueness_of :name, case_sensitive: false
   validates_uniqueness_of :abbr, case_sensitive: false
+
+  def data
+    {
+      years: summaries.pluck(:year)[0..9].reverse,
+      cost: summaries.pluck(:avg_cost)[0..9].map(&:to_f).reverse,
+      installs: summaries.pluck(:total_installs)[0..9].reverse,
+      capacity: summaries.pluck(:capacity)[0..9].map(&:to_f).reverse
+    }
+  end
 end
