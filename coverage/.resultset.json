@@ -1,21 +1,35 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/helpers/application_helper.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/models/state.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/models/state.rb": [
         1,
         1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2,
+        null,
         null
       ],
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/models/summary.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/models/summary.rb": [
         1,
         1,
+        null,
         null
       ],
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/services/nrel_service.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/services/nrel_service.rb": [
         1,
         1,
         4,
@@ -41,20 +55,43 @@
         null,
         null
       ],
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/controllers/states_controller.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/states_controller.rb": [
         1,
         1,
         null,
         null
       ],
-      "/Users/julianfeliciano/Dropbox/Development/Turing/3module/5wk/nrel_market_mapper/app/controllers/application_controller.rb": [
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
         null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/api/v1/summaries/summaries_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/api_controller.rb": [
+        1,
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1461125495
+    "timestamp": 1461180679
   }
 }
