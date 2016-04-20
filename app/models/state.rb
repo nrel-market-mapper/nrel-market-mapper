@@ -8,9 +8,9 @@ class State < ActiveRecord::Base
   def data
     {
       years: summaries.pluck(:year)[0..9].reverse,
-      cost: summaries.pluck(:avg_cost).map(&:to_f)[0..9].reverse,
+      cost: summaries.pluck(:avg_cost)[0..9].map(&:to_f).reverse,
       installs: summaries.pluck(:total_installs)[0..9].reverse,
-      capacity: summaries.pluck(:capacity).map(&:to_f)[0..9].reverse
+      capacity: summaries.pluck(:capacity)[0..9].map(&:to_f).reverse
     }
   end
 end

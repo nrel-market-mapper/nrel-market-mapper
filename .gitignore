@@ -18,5 +18,5 @@
 # Ignore cassettes
 /spec/cassettes
 
-# Ignore SimeCov
-/coverage/**/*
+# Ignore SimpleCov
+/coverage
