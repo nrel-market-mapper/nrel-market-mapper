@@ -34,10 +34,6 @@ function updateCapacities(sizes) {
 
 function updateTotals(totals) {
   $(".installs h4").html(totals.installs);
-  $(".capacity h4").html(roundTwoSigFigs(totals.capacity) + " MW");
-  $(".cost h4").html(roundTwoSigFigs(totals.cost) + " $/W");
-}
-
-function roundTwoSigFigs(string) {
-  return parseFloat(string).toFixed(2);
+  $(".capacity h4").html(totals.capacity);
+  $(".cost h4").html(totals.cost);
 }
