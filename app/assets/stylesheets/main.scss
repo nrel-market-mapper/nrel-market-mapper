@@ -2,6 +2,7 @@
 
 .navbar-default {
   background-color: rgba(255,255,255,1);
+  margin-bottom: 0;
 }
 
 .navbar-nav {
@@ -18,4 +19,47 @@
 
 .navbar-collapse[aria-expanded=true] li:last-of-type {
   border-bottom: none;
+}
+
+/*** State Select Dropdown ***/
+
+#states {
+  margin-top: 20px;
+}
+
+/*** Callout Boxes ***/
+
+.installs h3, .installs h4,
+.capacity h3, .capacity h4,
+.cost h3, .cost h4 {
+  text-align: center;
+}
+
+.installs h3,
+.capacity h3,
+.cost h3 {
+  background-color: rgba(2,99,180,1);
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 0;
+  padding: 10px 0;
+}
+
+.installs h4,
+.capacity h4,
+.cost h4 {
+  border: 1px solid rgba(2,99,180,1);
+  font-size: 1.3rem;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 0;
+}
+
+/*** Graphs ***/
+
+#costByYear,
+#installs,
+#size {
+  padding-right: 14px;
+  padding-left: 6px;
 }

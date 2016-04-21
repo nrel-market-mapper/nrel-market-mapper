@@ -1,6 +1,7 @@
 <section class="states">
   <div class="container">
     <%= select_tag "states", options_from_collection_for_select(@states, "abbr", "name"), class: "form-control" %>
+    <%= render partial: "shared/callout_boxes" %>
   </div>
   <%= render partial: "shared/graphs" %>
 </section>
