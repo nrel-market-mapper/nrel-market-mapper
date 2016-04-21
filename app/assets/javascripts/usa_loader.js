@@ -8,6 +8,7 @@ function updateCharts(data) {
   updateCosts(data.costs);
   updateInstalls(data.installs);
   updateCapacities(data.capacities);
+  updateTotals(data.totals)
 }
 
 function updateCosts(costs) {
@@ -29,4 +30,14 @@ function updateCapacities(sizes) {
     sizeChart.data.datasets[0].data[index] = size;
   });
   sizeChart.update();
+}
+
+function updateTotals(totals) {
+  $(".installs h4").html(totals.installs);
+  $(".capacity h4").html(roundTwoSigFigs(totals.capacity) + " MW");
+  $(".cost h4").html(roundTwoSigFigs(totals.cost) + " $/W");
+}
+
+function roundTwoSigFigs(string) {
+  return parseFloat(string).toFixed(2);
 }
