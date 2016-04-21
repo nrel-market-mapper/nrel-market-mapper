@@ -11,6 +11,7 @@ function updateCharts(data) {
   updateCosts(data.costs);
   updateInstalls(data.installs);
   updateSizes(data.sizes);
+  updateTotals(data.totals);
 }
 
 function updateCosts(costs) {
@@ -32,4 +33,10 @@ function updateSizes(sizes) {
     sizeChart.data.datasets[0].data[index] = size;
   });
   sizeChart.update();
+}
+
+function updateTotals(totals) {
+  $(".installs h4").html(totals.installs);
+  $(".capacity h4").html(totals.capacity);
+  $(".cost h4").html(totals.cost);
 }

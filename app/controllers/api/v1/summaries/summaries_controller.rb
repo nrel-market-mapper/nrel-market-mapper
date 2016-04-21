@@ -3,11 +3,11 @@ module Api
     module Summaries
       class SummariesController < ApiController
         def index
-          respond_with State.find_by(abbr: "US").data
+          respond_with State.find_by(abbr: "US"), serializer: StateSerializer
         end
 
         def show
-          respond_with State.find_by(abbr: params[:state]).data
+          respond_with State.find_by(abbr: params[:state]), serializer: StateSerializer
         end
       end
     end
