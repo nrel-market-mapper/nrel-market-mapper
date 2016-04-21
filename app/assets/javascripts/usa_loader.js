@@ -1,5 +1,5 @@
 if ($('.us').length !== 0) {
-  $.getJSON("http://nrel-market-mapper.herokuapp.com/api/v1/summaries.json", function(data) {
+  $.getJSON("http://localhost:3000/api/v1/summaries.json", function(data) {
     updateCharts(data);
   })
 }
