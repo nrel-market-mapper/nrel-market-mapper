@@ -6,11 +6,19 @@ class State < ActiveRecord::Base
   validates_uniqueness_of :abbr, case_sensitive: false
 
   def data
+    totals = summaries.find_by(year: "total")
+    ordered_summaries = summaries.order("year")
+
     {
-      years: summaries.order("year").pluck(:year)[0..-2],
-      costs: summaries.order("year").pluck(:avg_cost)[0..-2].map(&:to_f),
-      installs: summaries.order("year").pluck(:total_installs)[0..-2],
-      capacities: summaries.order("year").pluck(:capacity)[0..-2].map(&:to_f)
+      years: ordered_summaries.pluck(:year)[0..-2],
+      costs: ordered_summaries.pluck(:avg_cost)[0..-2].map(&:to_f),
+      installs: ordered_summaries.pluck(:total_installs)[0..-2],
+      capacities: ordered_summaries.pluck(:capacity)[0..-2].map(&:to_f),
+      totals: {
+        installs: totals.total_installs,
+        capacity: totals.capacity,
+        cost: totals.avg_cost
+      }
     }
   end
 end

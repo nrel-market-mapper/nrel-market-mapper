@@ -21,6 +21,12 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+Capybara.javascript_driver = :webkit
+
+Capybara::Webkit.configure do |config|
+  config.allow_url("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js")
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end

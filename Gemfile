@@ -23,6 +23,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "capybara-webkit"
   gem "webmock"
   gem "capybara"
   gem "shoulda-matchers", "~> 3.1"
