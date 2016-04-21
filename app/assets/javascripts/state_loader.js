@@ -2,7 +2,7 @@ var $stateSelect = $('#states');
 $stateSelect.on('change', function() {
   var state = $stateSelect.val();
 
-  $.getJSON("http://localhost:3000/api/v1/summaries/find?state=" + state, function(data) {
+  $.getJSON("http://nrel-market-mapper.herokuapp.com/api/v1/summaries/find?state=" + state, function(data) {
     updateCharts(data);
   })
 });
