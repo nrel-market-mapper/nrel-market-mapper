@@ -1,6 +1,8 @@
-<div class="container">
-  <%= render partial: "shared/callout_boxes" %>
-</div>
-<section class="us">
-  <%= render partial: "shared/graphs" %>
-</section>
+<% cache("us_charts", :expires_in => 1.day) do %>
+  <div class="container">
+    <%= render partial: "shared/callout_boxes" %>
+  </div>
+  <section class="us">
+    <%= render partial: "shared/graphs" %>
+  </section>
+<% end %>
