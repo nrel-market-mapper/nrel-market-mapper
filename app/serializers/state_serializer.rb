@@ -1,4 +1,5 @@
 class StateSerializer < ActiveModel::Serializer
+  include ActionView::Helpers::NumberHelper
   attributes :years, :costs, :installs, :capacities, :totals
 
   def summaries
@@ -27,7 +28,7 @@ class StateSerializer < ActiveModel::Serializer
 
   def totals
     {
-      installs: summaries.find_by(year: "total").total_installs.to_s,
+      installs: number_with_delimiter(summaries.find_by(year: "total").total_installs),
       capacity: ((summaries.find_by(year: "total").capacity.to_f.round(2).to_s) + " MW"),
       cost: ((summaries.find_by(year: "total").avg_cost.to_f.round(2).to_s) + " $/W")
     }
