@@ -1,4 +1,4 @@
-<% cache("states_charts", :expires_in => 1.day) %>
+<% cache("states_charts", :expires_in => 1.day) do %>
   <section class="states">
     <div class="container">
       <%= select_tag "states", options_from_collection_for_select(@states, "abbr", "name"), class: "form-control" %>

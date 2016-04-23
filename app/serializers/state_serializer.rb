@@ -1,7 +1,9 @@
 class StateSerializer < ActiveModel::Serializer
   attributes :years, :costs, :installs, :capacities, :totals
 
-  summaries = object.summaries
+  def summaries
+    @summaries ||= object.summaries
+  end
 
   def order_by_year
     summaries.order("year")
