@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe "GET /api/v1/summaries" do
   it "returns a list of PV data for the US by year" do
     get "/api/v1/summaries"
-
     json = JSON.parse(response.body)
 
     expected = {
@@ -15,8 +14,11 @@ RSpec.describe "GET /api/v1/summaries" do
     }
 
     expect(response).to be_success
-    expect(json).to eq expected
-
+    expect(json["years"]).to eq(expected["years"])
+    expect(json["costs"]).to eq(expected["costs"])
+    expect(json["installs"]).to eq(expected["installs"])
+    expect(json["capacities"]).to eq(expected["capacities"])
+    expect(json["totals"]).to eq(expected["totals"])
   end
 end
 
@@ -35,6 +37,10 @@ RSpec.describe "GET /api/v1/summaries?state=CA" do
     }
 
     expect(response).to be_success
-    expect(json). to eq expected
+    expect(json["years"]).to eq(expected["years"])
+    expect(json["costs"]).to eq(expected["costs"])
+    expect(json["installs"]).to eq(expected["installs"])
+    expect(json["capacities"]).to eq(expected["capacities"])
+    expect(json["totals"]).to eq(expected["totals"])
   end
 end

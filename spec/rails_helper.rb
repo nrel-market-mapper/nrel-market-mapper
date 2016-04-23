@@ -25,6 +25,7 @@ Capybara.javascript_driver = :webkit
 
 Capybara::Webkit.configure do |config|
   config.allow_url("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js")
+  config.block_unknown_urls
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

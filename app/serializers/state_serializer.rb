@@ -1,6 +1,6 @@
 class StateSerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
-  attributes :years, :costs, :installs, :capacities, :totals
+  attributes :years, :costs, :installs, :capacities, :totals, :geojson
 
   def summaries
     @summaries ||= object.summaries
