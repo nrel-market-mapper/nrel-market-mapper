@@ -69,7 +69,7 @@ namespace :geojson do
 
   desc "Seed states with GeoJSON files"
   task seed: :environment do
-    us_geojson = File.read("us.js").gsub!(/\s+/, "")
+    us_geojson = File.read(File.join(Rails.root, "lib", "assets", "geojson", "us.js")).gsub!(/\s+/, "")
     us = State.find_by(abbr: "US")
     us.update(geojson: us_geojson)
   end
