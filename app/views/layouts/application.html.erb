@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>NrelMarketMapper</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +11,7 @@
   <%= render partial: "layouts/nav" %>
   <%= yield %>
 
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js'></script>
   <%= javascript_include_tag 'application' %>
 </body>
