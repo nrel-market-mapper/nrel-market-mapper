@@ -14,6 +14,7 @@ gem "faraday"
 gem "responders", "~> 2.0"
 gem "active_model_serializers", github: "rails-api/active_model_serializers"
 gem "rails_12factor", group: :production
+gem "skylight"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.0"
