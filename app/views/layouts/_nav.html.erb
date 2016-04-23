@@ -1,21 +1,23 @@
-<header>
-  <div class="navbar navbar-default navbar-fat navbar-clean">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar b1"></span>
-          <span class="icon-bar b2"></span>
-          <span class="icon-bar b3"></span>
-        </button>
-        <%= link_to image_tag("nrel-logo.jpg", alt: "NREL"), root_path %>
-      </div>
+<% cache("site_nav", :expires_in => 1.day) %>
+  <header>
+    <div class="navbar navbar-default navbar-fat navbar-clean">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar b1"></span>
+            <span class="icon-bar b2"></span>
+            <span class="icon-bar b3"></span>
+          </button>
+          <%= link_to image_tag("nrel-logo.jpg", alt: "NREL"), root_path %>
+        </div>
 
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "USA", root_path %></li>
-          <li><%= link_to "States", states_path %></li>
-        </ul>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "USA", root_path %></li>
+            <li><%= link_to "States", states_path %></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
+<% end %>
