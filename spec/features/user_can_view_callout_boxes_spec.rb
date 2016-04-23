@@ -9,7 +9,7 @@ RSpec.feature "User can view callout boxes" do
 #       expect(page).to have_content "483418"
       expect(page).to have_content "Total Capacity"
 #       expect(page).to have_content "9171.96 MW"
-      expect(page).to have_content "Avg Cost/yr"
+      expect(page).to have_content "Avg Cost"
 #       expect(page).to have_content "6.56 $/W"
     end
   end

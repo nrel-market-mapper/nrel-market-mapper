@@ -2,8 +2,12 @@ class StateSerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
   attributes :years, :costs, :installs, :capacities, :totals
 
+  def summaries
+    @summaries ||= object.summaries
+  end
+
   def order_by_year
-    object.summaries.order("year")
+    summaries.order("year")
   end
 
   def years
@@ -24,9 +28,9 @@ class StateSerializer < ActiveModel::Serializer
 
   def totals
     {
-      installs: number_with_delimiter(object.summaries.find_by(year: "total").total_installs),
-      capacity: ((object.summaries.find_by(year: "total").capacity.to_f.round(2).to_s) + " MW"),
-      cost: ((object.summaries.find_by(year: "total").avg_cost.to_f.round(2).to_s) + " $/W")
+      installs: number_with_delimiter(summaries.find_by(year: "total").total_installs),
+      capacity: ((summaries.find_by(year: "total").capacity.to_f.round(2).to_s) + " MW"),
+      cost: ((summaries.find_by(year: "total").avg_cost.to_f.round(2).to_s) + " $/W")
     }
   end
 end
