@@ -6,7 +6,7 @@ if ($('.states').length !== 0) {
     $.getJSON("http://localhost:3000/api/v1/summaries/find?state=" + state, function(data) {
       updateCharts(data);
       var parsedGeoJson = $.parseJSON(data.geojson);
-      loadMap(parsedGeoJson);
+      loadMap(parsedGeoJson, data.lat_long);
     })
   });
 
@@ -44,8 +44,8 @@ if ($('.states').length !== 0) {
     $(".cost h4").html(totals.cost);
   }
 
-  function loadMap(geojson) {
-    var mymap = L.map('map').setView([39.1, -105.5], 6);
+  function loadMap(geojson, lat_long) {
+    var mymap = L.map('map').setView(lat_long, 6);
     var lastClickedLayer = null;
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
