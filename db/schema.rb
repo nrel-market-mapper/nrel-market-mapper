@@ -47,9 +47,10 @@ ActiveRecord::Schema.define(version: 20160423211955) do
 
   create_table "zipcodes", force: :cascade do |t|
     t.string   "number"
+    t.integer  "total_installs"
     t.integer  "county_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "zipcodes", ["county_id"], name: "index_zipcodes_on_county_id", using: :btree

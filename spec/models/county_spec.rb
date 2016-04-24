@@ -4,5 +4,4 @@ RSpec.describe County, type: :model do
   it { should belong_to :state }
   it { should have_many :zipcodes }
   it { should validate_presence_of :name }
-  it { should validate_uniqueness_of :name }
 end
