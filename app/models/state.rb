@@ -1,5 +1,7 @@
 class State < ActiveRecord::Base
   has_many :summaries
+  has_many :counties
+  has_many :zipcodes, through: :counties
 
   validates_presence_of :name
   validates_presence_of :abbr

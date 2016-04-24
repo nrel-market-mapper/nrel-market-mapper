@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :zipcode do
+    number "MyString"
+    county nil
+  end
+  factory :county do
+    name "MyString"
+    state nil
+  end
   factory :summary do
     year "MyString"
     avg_cost "9.99"
