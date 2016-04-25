@@ -5,6 +5,7 @@ class State < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :abbr
+  validates_presence_of :zoom
   validates_uniqueness_of :name, case_sensitive: false
   validates_uniqueness_of :abbr, case_sensitive: false
 
