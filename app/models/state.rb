@@ -9,4 +9,8 @@ class State < ActiveRecord::Base
   validates_uniqueness_of :abbr, case_sensitive: false
 
   serialize :geojson, JSON
+
+  def max_county_installs
+    counties.joins(:zipcodes).group(:name).sum(:total_installs).values.max
+  end
 end

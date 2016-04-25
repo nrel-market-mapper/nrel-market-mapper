@@ -1,11 +1,12 @@
 if ($('.states').length !== 0) {
   var $stateSelect = $('#states');
   $stateSelect.on('change', function() {
-    var state = $stateSelect.val();
+    state = $stateSelect.val();
 
     $.getJSON("http://localhost:3000/api/v1/summaries/find?state=" + state, function(data) {
       updateCharts(data);
       var parsedGeoJson = $.parseJSON(data.geojson);
+      max_county_installs = data.max_county_installs;
       loadMap(parsedGeoJson, data.lat_long);
     })
   });
@@ -54,12 +55,12 @@ if ($('.states').length !== 0) {
     }).addTo(mymap);
 
     function getColor(d) {
-      return d > 10000 ? '#08589e' :
-             d > 3000  ? '#2b8cbe' :
-             d > 1000  ? '#4eb3d3' :
-             d > 500   ? '#7bccc4' :
-             d > 100   ? '#a8ddb5' :
-                         '#ccebc5'
+      return d > (max_county_installs * .8) ? '#08589e' :
+             d > (max_county_installs * .6) ? '#2b8cbe' :
+             d > (max_county_installs * .4) ? '#4eb3d3' :
+             d > (max_county_installs * .2) ? '#7bccc4' :
+             d > (max_county_installs * .1) ? '#a8ddb5' :
+                                              '#ccebc5'
     }
 
     function style(feature) {
@@ -123,7 +124,7 @@ if ($('.states').length !== 0) {
 
     // method that we will use to update the control based on feature properties passed
     info.update = function(props) {
-      this._div.innerHTML = '<h4>State Solar Installations</h4>' + (props ?
+      this._div.innerHTML = '<h4>' + state + ' Solar Installations</h4>' + (props ?
           '<b>' + props.name + '</b><br>' + props.installs + ' installs' : 'Click on a county');
     };
 
@@ -131,7 +132,7 @@ if ($('.states').length !== 0) {
 
     legend.onAdd = function(map) {
       var div = L.DomUtil.create('div', 'info legend'),
-          grades = [0, 100, 500, 1000, 3000, 10000],
+          grades = [0, parseInt(max_county_installs * .1), parseInt(max_county_installs * .2), parseInt(max_county_installs * .4), parseInt(max_county_installs * .6), parseInt(max_county_installs * .8)],
           labels = [];
 
       // loop through our density intervals and generate a label with a colored square for each interval
