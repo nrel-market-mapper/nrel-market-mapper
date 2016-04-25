@@ -16,6 +16,7 @@ gem "active_model_serializers", github: "rails-api/active_model_serializers"
 gem "rails_12factor", group: :production
 gem "skylight"
 gem "dalli"
+gem "capybara-webkit"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.0"
