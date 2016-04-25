@@ -4,6 +4,9 @@
       <%= select_tag "states", options_from_collection_for_select(@states, "abbr", "name"), class: "form-control", include_blank: "Select a State" %>
       <%= render partial: "shared/callout_boxes" %>
     </div>
+    <div class="container map">
+      <%= render partial: "shared/map" %>
+    </div>
     <%= render partial: "shared/graphs" %>
   </section>
 <% end %>

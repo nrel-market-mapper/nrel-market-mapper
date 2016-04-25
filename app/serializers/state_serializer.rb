@@ -1,6 +1,6 @@
 class StateSerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
-  attributes :years, :costs, :installs, :capacities, :totals, :geojson
+  attributes :years, :costs, :installs, :capacities, :totals, :geojson, :lat_long, :max_county_installs
 
   def summaries
     @summaries ||= object.summaries
@@ -24,6 +24,10 @@ class StateSerializer < ActiveModel::Serializer
 
   def capacities
     order_by_year.pluck(:capacity)[0..-2].map(&:to_f)
+  end
+
+  def lat_long
+    [object.lat, object.long]
   end
 
   def totals
