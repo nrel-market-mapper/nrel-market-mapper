@@ -8,6 +8,7 @@ require 'rspec/rails'
 require "capybara/rails"
 require "vcr"
 require "webmock/rspec"
+
 # Add additional requires below this line. Rails is not loaded until this point!
 VCR.configure do |config|
   config.cassette_library_dir = "spec/cassettes"

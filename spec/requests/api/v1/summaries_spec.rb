@@ -1,5 +1,4 @@
 require "rails_helper"
-require "test_helper"
 
 RSpec.describe "GET /api/v1/summaries" do
   it "returns a list of PV data for the US by year" do
