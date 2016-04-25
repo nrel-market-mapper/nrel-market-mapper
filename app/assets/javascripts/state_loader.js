@@ -14,7 +14,7 @@ if ($('.states').length !== 0) {
       updateCharts(data);
       var parsedGeoJson = $.parseJSON(data.geojson);
       max_county_installs = data.max_county_installs;
-      loadMap(parsedGeoJson, data.lat_long);
+      loadMap(parsedGeoJson, data);
     })
   });
 
@@ -61,8 +61,8 @@ if ($('.states').length !== 0) {
     }).addTo(mymap);
   }
 
-  function loadMap(geojson, lat_long) {
-    mymap = L.map('map').setView(lat_long, 6);
+  function loadMap(geojson, data) {
+    mymap = L.map('map').setView(data.lat_long, data.zoom);
     var lastClickedLayer = null;
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
