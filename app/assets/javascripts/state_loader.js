@@ -1,5 +1,11 @@
 if ($('.states').length !== 0) {
+  var mymap;
   var $stateSelect = $('#states');
+
+  $(document).on('ready', function() {
+    loadBlankMap();
+  });
+
   $stateSelect.on('change', function() {
     state = $stateSelect.val();
 
@@ -45,8 +51,18 @@ if ($('.states').length !== 0) {
     $(".cost h4").html(totals.cost);
   }
 
+  function loadBlankMap() {
+    mymap = L.map('map').setView([37.8, -96], 3);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        id: 'mapbox.light',
+        accessToken: 'pk.eyJ1IjoianVsc2ZlbGljIiwiYSI6ImNpbmFmaHlnazBobjZ2MGt2aWltcHN5ZWIifQ.dXiLrMR-naZgZVExDlTlcA'
+    }).addTo(mymap);
+  }
+
   function loadMap(geojson, lat_long) {
-    var mymap = L.map('map').setView(lat_long, 6);
+    mymap.remove();
+    mymap = L.map('map').setView(lat_long, 6);
     var lastClickedLayer = null;
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
