@@ -10,47 +10,13 @@ if ($('.states').length !== 0) {
     state = $stateSelect.val();
     mymap.remove();
 
-    $.getJSON("http://nrel-market-mapper.herokuapp.com/api/v1/summaries/find?state=" + state, function(data) {
-      updateCharts(data);
+    $.getJSON("http://localhost:3000/api/v1/summaries/find?state=" + state, function(data) {
+      updateData(data);
       var parsedGeoJson = $.parseJSON(data.geojson);
       max_county_installs = data.max_county_installs;
       loadMap(parsedGeoJson, data);
     })
   });
-
-  function updateCharts(data) {
-    updateCosts(data.costs);
-    updateInstalls(data.installs);
-    updateSizes(data.capacities);
-    updateTotals(data.totals);
-  }
-
-  function updateCosts(costs) {
-    costs.forEach(function(cost, index) {
-      costByYearChart.data.datasets[0].data[index] = cost;
-    });
-    costByYearChart.update();
-  }
-
-  function updateInstalls(installs) {
-    installs.forEach(function(install, index){
-      installsChart.data.datasets[0].data[index] = install;
-    });
-    installsChart.update();
-  }
-
-  function updateSizes(sizes) {
-    sizes.forEach(function(size, index) {
-      sizeChart.data.datasets[0].data[index] = size;
-    });
-    sizeChart.update();
-  }
-
-  function updateTotals(totals) {
-    $(".installs h4").html(totals.installs);
-    $(".capacity h4").html(totals.capacity);
-    $(".cost h4").html(totals.cost);
-  }
 
   function loadBlankMap() {
     mymap = L.map('map').setView([37.8, -96], 3);
