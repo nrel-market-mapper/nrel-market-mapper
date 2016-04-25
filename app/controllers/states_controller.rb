@@ -3,6 +3,6 @@ class StatesController < ApplicationController
   end
 
   def show
-    @states = State.where.not(abbr: "US")
+    @states = State.where.not(abbr: "US").order(:name)
   end
 end

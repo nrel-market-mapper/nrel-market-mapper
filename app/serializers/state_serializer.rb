@@ -1,8 +1,13 @@
 class StateSerializer < ActiveModel::Serializer
-  attributes :years, :costs, :installs, :capacities, :totals
+  include ActionView::Helpers::NumberHelper
+  attributes :years, :costs, :installs, :capacities, :totals, :geojson, :lat_long, :max_county_installs
+
+  def summaries
+    @summaries ||= object.summaries
+  end
 
   def order_by_year
-    object.summaries.order("year")
+    summaries.order("year")
   end
 
   def years
@@ -21,11 +26,15 @@ class StateSerializer < ActiveModel::Serializer
     order_by_year.pluck(:capacity)[0..-2].map(&:to_f)
   end
 
+  def lat_long
+    [object.lat, object.long]
+  end
+
   def totals
     {
-      installs: object.summaries.find_by(year: "total").total_installs.to_s,
-      capacity: ((object.summaries.find_by(year: "total").capacity.to_f.round(2).to_s) + " MW"),
-      cost: ((object.summaries.find_by(year: "total").avg_cost.to_f.round(2).to_s) + " $/W")
+      installs: number_with_delimiter(summaries.find_by(year: "total").total_installs),
+      capacity: ((summaries.find_by(year: "total").capacity.to_f.round(2).to_s) + " MW"),
+      cost: ((summaries.find_by(year: "total").avg_cost.to_f.round(2).to_s) + " $/W")
     }
   end
 end

@@ -11,16 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419233439) do
+ActiveRecord::Schema.define(version: 20160425185108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "counties", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "counties", ["state_id"], name: "index_counties_on_state_id", using: :btree
+
   create_table "states", force: :cascade do |t|
     t.string   "abbr"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.text     "geojson"
+    t.float    "lat"
+    t.float    "long"
+    t.integer  "zoom",       default: 6
   end
 
   create_table "summaries", force: :cascade do |t|
@@ -35,5 +48,17 @@ ActiveRecord::Schema.define(version: 20160419233439) do
 
   add_index "summaries", ["state_id"], name: "index_summaries_on_state_id", using: :btree
 
+  create_table "zipcodes", force: :cascade do |t|
+    t.string   "number"
+    t.integer  "total_installs"
+    t.integer  "county_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "zipcodes", ["county_id"], name: "index_zipcodes_on_county_id", using: :btree
+
+  add_foreign_key "counties", "states"
   add_foreign_key "summaries", "states"
+  add_foreign_key "zipcodes", "counties"
 end
