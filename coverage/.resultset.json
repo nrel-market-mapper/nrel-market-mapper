@@ -1,0 +1,125 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/models/state.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/models/summary.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/services/nrel_service.rb": [
+        1,
+        1,
+        4,
+        4,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        null,
+        1,
+        8,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/states_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/api/v1/summaries/summaries_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/controllers/api_controller.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/kimiko/Documents/Turing/3module/projects/nrel-market-mapper/app/serializers/state_serializer.rb": [
+        1,
+        1,
+        null,
+        1,
+        8,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        null,
+        null,
+        2,
+        2,
+        2,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1461419485
+  }
+}
