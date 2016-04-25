@@ -2,7 +2,7 @@ if ($('.us').length !== 0) {
   $.getJSON("http://nrel-market-mapper.herokuapp.com/api/v1/summaries.json", function(data) {
     updateCharts(data);
     var parsedGeoJson = $.parseJSON(data.geojson);
-    loadMap(parsedGeoJson);
+    loadUsMap(parsedGeoJson);
   })
 
   function updateCharts(data) {
@@ -39,7 +39,7 @@ if ($('.us').length !== 0) {
     $(".cost h4").html(totals.cost);
   }
 
-  function loadMap(geojson) {
+  function loadUsMap(geojson) {
     var mymap = L.map('map').setView([37.8, -96], 3);
     var lastClickedLayer = null;
 

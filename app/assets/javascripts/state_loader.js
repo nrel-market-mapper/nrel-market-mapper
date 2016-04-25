@@ -8,6 +8,7 @@ if ($('.states').length !== 0) {
 
   $stateSelect.on('change', function() {
     state = $stateSelect.val();
+    mymap.remove();
 
     $.getJSON("http://nrel-market-mapper.herokuapp.com/api/v1/summaries/find?state=" + state, function(data) {
       updateCharts(data);
@@ -61,7 +62,6 @@ if ($('.states').length !== 0) {
   }
 
   function loadMap(geojson, lat_long) {
-    mymap.remove();
     mymap = L.map('map').setView(lat_long, 6);
     var lastClickedLayer = null;
 
