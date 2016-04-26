@@ -10,7 +10,7 @@ if ($('.states').length !== 0) {
     state = $stateSelect.val();
     mymap.remove();
 
-    $.getJSON("http://localhost:3000/api/v1/summaries/find?state=" + state, function(data) {
+    $.getJSON("http://nrel-market-mapper.herokuapp.com/api/v1/summaries/find?state=" + state, function(data) {
       updateData(data);
       loadStateMap($.parseJSON(data.geojson), data);
     })
