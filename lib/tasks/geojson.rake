@@ -1,4 +1,5 @@
 namespace :geojson do
+
   desc "Update the GeoJSON data with latest NREL data"
   task update_us: :environment do
     service = NrelService.new
@@ -14,36 +15,29 @@ namespace :geojson do
     us.update(geojson: geojson.to_json)
   end
 
-  desc "Seed states with GeoJSON files"
+  desc "Seed US with GeoJSON files"
   task seed_us: :environment do
     us_geojson = File.read(File.join(Rails.root, "lib", "assets", "geojson", "us.js")).gsub!(/\s+/, "")
     us = State.find_by(abbr: "US")
     us.update(geojson: us_geojson)
   end
 
-  desc "Normalize county names in state geojson"
-  task normalize_state: :environment do
-    state_geojson = File.read(File.join(Rails.root, "lib", "assets", "geojson", "colorado.js"))
-    parsed_json = JSON.parse(state_geojson).deep_symbolize_keys
-    parsed_json[:features].each do |county|
-      county[:properties][:name].chomp!(", CO")
-    end
-
-    File.open(File.join(Rails.root, "lib", "assets", "geojson", "colorado.js"), "w") do |file|
-      file.write(parsed_json.to_json)
-    end
+  desc "Seed states with GeoJSON files"
+  task :seed_state, [:abbr] => [:environment] do |t, args|
+    geojson = File.read(File.join(Rails.root, "lib", "assets", "geojson", "#{args[:abbr]}.js"))
+    state = State.find_by(abbr: "#{args[:abbr].upcase}")
+    state.update(geojson: geojson)
   end
 
-  desc "Add installs to state geojson for counties"
-  task seed_county_installs: :environment do
-    state_geojson = File.read(File.join(Rails.root, "lib", "assets", "geojson", "colorado.js"))
+  desc "Normalize county names in state geojson"
+  task :normalize_state, [:abbr] => [:environment] do |t, args|
+    state_geojson = File.read(File.join(Rails.root, "lib", "assets", "geojson", "#{args[:abbr]}.js"))
     parsed_json = JSON.parse(state_geojson).deep_symbolize_keys
     parsed_json[:features].each do |county|
-      number_installs = State.find_by(abbr: "CO").counties.find_by(name: county[:properties][:name]).installs
-      county[:properties][:installs] = number_installs
+      county[:properties][:name].chomp!(", #{args[:abbr].upcase}")
     end
 
-    File.open(File.join(Rails.root, "lib", "assets", "geojson", "colorado.js"), "w") do |file|
+    File.open(File.join(Rails.root, "lib", "assets", "geojson", "#{args[:abbr]}.js"), "w") do |file|
       file.write(parsed_json.to_json)
     end
   end

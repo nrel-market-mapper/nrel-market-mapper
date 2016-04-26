@@ -10,7 +10,7 @@ if ($('.states').length !== 0) {
     state = $stateSelect.val();
     mymap.remove();
 
-    $.getJSON("http://nrel-market-mapper.herokuapp.com/api/v1/summaries/find?state=" + state, function(data) {
+    $.getJSON("http://localhost:3000/api/v1/summaries/find?state=" + state, function(data) {
       updateCharts(data);
       var parsedGeoJson = $.parseJSON(data.geojson);
       max_county_installs = data.max_county_installs;

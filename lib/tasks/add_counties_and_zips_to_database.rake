@@ -13,16 +13,4 @@ namespace :county_zipcode do
       end
     end
   end
-
-  desc "Seed database with NREL install data for CO zipcodes"
-  task nrel_CO_seed: :environment do
-    service = NrelService.new
-
-    State.find_by(abbr: "CO").zipcodes.each do |zipcode|
-      response = service.summaries(zipcode: zipcode.number)
-      installs = response[:result][:total_installs]
-      zipcode.update(total_installs: installs)
-      puts "Add #{installs} installs to #{zipcode.number}"
-    end
-  end
 end

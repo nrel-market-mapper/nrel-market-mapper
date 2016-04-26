@@ -4,6 +4,6 @@ class County < ActiveRecord::Base
   validates_presence_of :name
 
   def installs
-    zipcodes.pluck(:total_installs).reduce(&:+)
+    zipcodes.pluck(:total_installs).compact.reduce(&:+)
   end
 end
