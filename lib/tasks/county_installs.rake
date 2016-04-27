@@ -56,7 +56,7 @@ task :seed_county_installs, [:abbr] => [:environment] do |t, args|
   state_geojson = File.read(File.join(Rails.root, "lib", "assets", "geojson", "#{args[:abbr]}.js"))
   parsed_json = JSON.parse(state_geojson).deep_symbolize_keys
   parsed_json[:features].each do |county_geojson|
-    county_name = county_geojson[:properties][:namelsad]
+    county_name = county_geojson[:properties][:name]
     county = State.find_by(abbr: "#{args[:abbr].upcase}").counties.find_by(name: county_name)
     if county
       number_installs = county.installs

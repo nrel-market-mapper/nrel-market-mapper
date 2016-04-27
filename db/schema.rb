@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427030109) do
+ActiveRecord::Schema.define(version: 20160427154640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 20160427030109) do
 
   create_table "zipcodes", force: :cascade do |t|
     t.string   "number"
-    t.integer  "total_installs"
+    t.integer  "total_installs", default: 0
     t.integer  "county_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "zipcodes", ["county_id"], name: "index_zipcodes_on_county_id", using: :btree
