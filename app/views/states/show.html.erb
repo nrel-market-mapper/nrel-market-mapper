@@ -1,12 +1,14 @@
 <% cache("states_charts", :expires_in => 1.day) do %>
-  <section class="states">
-    <div class="container">
-      <%= select_tag "states", options_from_collection_for_select(@states, "abbr", "name"), class: "form-control", include_blank: "Select a State" %>
+  <div class="container box-map clearfix states">
+    <%= select_tag "states", options_from_collection_for_select(@states, "abbr", "name"), class: "form-control", include_blank: "Select a State" %>
+    <div class="callout-boxes">
       <%= render partial: "shared/callout_boxes" %>
     </div>
-    <div class="container map">
+    <div class="map">
       <%= render partial: "shared/map" %>
     </div>
-    <%= render partial: "shared/graphs" %>
-  </section>
+    <section class="states">
+      <%= render partial: "shared/graphs" %>
+    </section>
+  </div>
 <% end %>

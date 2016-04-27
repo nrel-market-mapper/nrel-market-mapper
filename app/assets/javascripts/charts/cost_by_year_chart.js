@@ -11,7 +11,7 @@ var costByYearData = {
         pointBorderWidth: 5,
         pointHoverRadius: 9,
         pointHoverBorderWidth: 4,
-        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
       }
     ]
   }

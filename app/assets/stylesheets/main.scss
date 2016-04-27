@@ -1,3 +1,8 @@
+/*** General ***/
+body {
+  padding-bottom: 20px;
+}
+
 /*** Nav ***/
 
 .navbar-default {
@@ -97,4 +102,32 @@
 .map {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+/*** Media Queries ***/
+
+@media (min-width: 768px) {
+  .box-map {
+    padding: 0 28px;
+  }
+
+  .box-map .map {
+    float: left;
+    width: 70%;
+  }
+
+  .box-map #map {
+    height: 312px !important;
+  }
+
+  .box-map .callout-boxes {
+    float: right;
+    width: 25%;
+  }
+
+  canvas {
+    width: 32% !important;
+    max-width: 768px;
+    height: auto !important;
+  }
 }
