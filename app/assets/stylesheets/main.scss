@@ -62,13 +62,6 @@ body {
 
 /*** Graphs ***/
 
-#costByYear,
-#installs,
-#size {
-  padding-right: 14px;
-  padding-left: 6px;
-}
-
 /*** Maps ***/
 .info {
   padding: 6px 8px;
@@ -129,5 +122,9 @@ body {
     width: 32% !important;
     max-width: 768px;
     height: auto !important;
+  }
+
+  #size {
+    margin: 0 14px;
   }
 }
