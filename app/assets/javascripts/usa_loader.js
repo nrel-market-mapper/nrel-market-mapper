@@ -1,5 +1,6 @@
 if ($('.us').length !== 0) {
   $.getJSON("http://localhost:3000/api/v1/summaries.json", function(data) {
+    alert("Ajax hit");
     updateCharts(data);
     var parsedGeoJson = $.parseJSON(data.geojson);
     loadUsMap(parsedGeoJson);

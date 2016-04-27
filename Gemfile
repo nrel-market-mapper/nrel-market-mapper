@@ -28,6 +28,7 @@ end
 
 group :test do
   gem "selenium-webdriver"
+  gem "chromedriver-helper"
   gem "webmock"
   gem "capybara"
   gem "shoulda-matchers", "~> 3.1"

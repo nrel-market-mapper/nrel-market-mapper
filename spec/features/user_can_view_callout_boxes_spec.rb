@@ -1,5 +1,7 @@
 require "rails_helper"
 
+Selenium::WebDriver.for :chrome
+
 RSpec.feature "User can view callout boxes", :js => true do
   scenario "they see totals for US" do
     VCR.use_cassette "callout_boxes_for_US" do
@@ -8,15 +10,8 @@ RSpec.feature "User can view callout boxes", :js => true do
       us_geojson = File.read(File.join(Rails.root, "lib", "assets", "geojson", "us.js")).gsub!(/\s+/, "")
       state.update(geojson: us_geojson)
 
-      # driver = Selenium::WebDriver.for :firefox
-      # driver.navigate.to "http://localhost:3000/"
       visit root_path
-      # click_on "USA"
-      # click_on "States"
-      # find("#states").find(:xpath, "option[CA]").select_option
-      # select "CO", from: "states"
-      # wait = Selenium::WebDriver::Wait.new(:timeout => 5) # seconds
-      # wait.until { driver.find_element(:id => "total_installs") }
+
       wait_for_ajax
       # sleep(5)
       # save_and_open_page
@@ -29,7 +24,7 @@ RSpec.feature "User can view callout boxes", :js => true do
 
       # expect(page).to have_selector("#total_installs", visible: true)
       expect(page).to have_content "# of Installs"
-
+\
       # expect(find("#total_installs")).to have_content "483418"
       expect(page).to have_content "483418"
       expect(page).to have_content "Total Capacity"

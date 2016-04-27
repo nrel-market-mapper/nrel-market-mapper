@@ -14,7 +14,6 @@ module WaitForAjax
   def wait_for_ajax
     Timeout.timeout(Capybara.default_max_wait_time) do
       loop until finished_all_ajax_requests?
-      # loop until !page.has_content?("n/a")
     end
   end
 
@@ -23,12 +22,12 @@ module WaitForAjax
   end
 end
 
-def wait_until
-  Timeout.timeout(Capybara.default_max_wait_time) do
-    sleep(0.1) until value = yield
-    value
-  end
-end
+# def wait_until
+#   Timeout.timeout(Capybara.default_max_wait_time) do
+#     sleep(0.1) until value = yield
+#     value
+#   end
+# end
 
 RSpec.configure do |config|
   config.include WaitForAjax, type: :feature

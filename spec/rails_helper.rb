@@ -14,6 +14,7 @@ VCR.configure do |config|
   config.allow_http_connections_when_no_cassette = true
   config.cassette_library_dir = "spec/cassettes"
   config.hook_into :webmock
+  config.ignore_localhost = true
 end
 
 Shoulda::Matchers.configure do |config|
@@ -23,7 +24,11 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Capybara.javascript_driver = :webkit
+# Capybara.javascript_driver = :webkit
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
 
 Capybara::Webkit.configure do |config|
   config.allow_url("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js")
