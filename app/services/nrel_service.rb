@@ -12,6 +12,11 @@ class NrelService
     parse(connection.get("/api/solar/open_pv/installs/summaries", params))
   end
 
+  def csv_index(params)
+    connection.params["export"] = "true"
+    connection.get("/api/solar/open_pv/installs/index", (params)).body
+  end
+
   private
 
     def connection
