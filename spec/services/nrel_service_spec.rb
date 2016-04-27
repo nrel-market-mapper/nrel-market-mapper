@@ -48,4 +48,16 @@ RSpec.describe NrelService do
       end
     end
   end
+
+  context "#csv_index" do
+    it "returns csv data" do
+      VCR.use_cassette("nrel_service#csv_index?state=AL") do
+        service = NrelService.new
+        result = service.csv_index(state: "AL")
+
+        expected = "Zipcode,State,Size (kW DC),Cost,Date Installed,Filters=state=AL"
+        expect(result.split("\n").first).to eq expected
+      end
+    end
+  end
 end

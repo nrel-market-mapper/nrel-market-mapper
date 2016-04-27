@@ -1,5 +1,5 @@
 namespace :nrel_api_to_database do
-  desc "Seed the database with NREL API data"
+  desc "Seed the database with NREL API solar data from summaries"
   task seed: :environment do
     service = NrelService.new
     data = service.summaries
@@ -50,7 +50,7 @@ namespace :nrel_api_to_database do
     end
   end
 
-  desc "updates the NREL datebase"
+  desc "Updates the NREL datebase if there is new solar data"
   task update: :environment do
 
     us = State.find_by(abbr: "US")
