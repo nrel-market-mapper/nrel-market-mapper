@@ -1,4 +1,6 @@
 if ($('.states').length !== 0) {
+  findDeviceWidth();
+
   var mymap;
   var $stateSelect = $('#states');
 
