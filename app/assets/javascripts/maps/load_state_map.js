@@ -1,4 +1,6 @@
 function loadStateMap(geojson, data) {
+  changeInfoText('county');
+  
   var
     stateInfo = {
       maxCountyInstalls: data.max_county_installs,
@@ -98,7 +100,7 @@ function loadStateMap(geojson, data) {
   // method that we will use to update the control based on feature properties passed
   info.update = function(props) {
     this._div.innerHTML = '<h4>' + state + ' Solar Installations</h4>' + (props ?
-        '<b>' + props.name + '</b><br>' + props.installs + ' installs' : 'Click on a county');
+        '<b>' + props.name + '</b><br>' + props.installs + ' installs' : clickOrHover);
   };
 
   var legend = L.control({position: 'bottomright'});

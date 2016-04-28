@@ -1,4 +1,6 @@
 function loadUsMap(geojson) {
+  changeInfoText('state');
+
   var mymap = L.map('map').setView([37.8, -96], 3);
   var lastClickedLayer = null;
 
@@ -78,7 +80,7 @@ function loadUsMap(geojson) {
   // method that we will use to update the control based on feature properties passed
   info.update = function(props) {
     this._div.innerHTML = '<h4>US Solar Installations</h4>' + (props ?
-        '<b>' + props.name + '</b><br>' + props.installs + ' installs' : 'Click on a state');
+        '<b>' + props.name + '</b><br>' + props.installs + ' installs' : clickOrHover);
   };
 
   var legend = L.control({position: 'bottomright'});
