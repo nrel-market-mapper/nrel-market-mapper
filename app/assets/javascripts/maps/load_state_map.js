@@ -14,25 +14,17 @@ function loadStateMap(geojson, data) {
         { level: data.max_county_installs * 0.5,  color: '#08589e' },
         { level: data.max_county_installs * 0.3,  color: '#2b8cbe' },
         { level: data.max_county_installs * 0.1,  color: '#4eb3d3' },
-        { level: data.max_county_installs * 0.05, color: '#7bccc4' },
-        { level: data.max_county_installs * 0.02, color: '#a8ddb5' }
-      ],
-      dataSetMed: [
-        { level: data.max_county_installs * 0.6,  color: '#08589e' },
-        { level: data.max_county_installs * 0.5,  color: '#2b8cbe' },
-        { level: data.max_county_installs * 0.4,  color: '#4eb3d3' },
-        { level: data.max_county_installs * 0.3,  color: '#7bccc4' },
-        { level: data.max_county_installs * 0.2,  color: '#a8ddb5' }
+        { level: data.max_county_installs * 0.06, color: '#7bccc4' },
+        { level: data.max_county_installs * 0.03, color: '#a8ddb5' }
       ],
       dataSetLow: [
-        { level: 5, color: '#08589e' },
-        { level: 4, color: '#2b8cbe' },
-        { level: 3, color: '#4eb3d3' },
-        { level: 2, color: '#7bccc4' },
-        { level: 1, color: '#a8ddb5' }
+        { level: 10, color: '#08589e' },
+        { level: 8,  color: '#2b8cbe' },
+        { level: 6,  color: '#4eb3d3' },
+        { level: 4,  color: '#7bccc4' },
+        { level: 2,  color: '#a8ddb5' }
       ]
     };
-  var max_county_installs = data.max_county_installs;
   mymap = L.map('map').setView(data.lat_long, data.zoom);
   var lastClickedLayer = null;
 
@@ -43,13 +35,13 @@ function loadStateMap(geojson, data) {
 
   function getColor(d, dataset) {
     for (var i=0; i<dataset.length; i++) {
-      if (d > dataset[i].level) { return dataset[i].color; }
+      if (d >= dataset[i].level) { return dataset[i].color; }
     }
     return stateInfo.defaultColor;
   }
 
   function getStyle(feature) {
-    var dataset = stateInfo.maxCountyInstalls < 30 ? stateInfo.dataSetMed : stateInfo.dataSetHi;
+    var dataset = stateInfo.maxCountyInstalls < 30 ? stateInfo.dataSetLow : stateInfo.dataSetHi;
     return _.extend(stateInfo.defaultStyle, {
       fillColor: getColor(feature.properties.installs, dataset)
     });
@@ -113,8 +105,8 @@ function loadStateMap(geojson, data) {
 
   function createLegend() {
     var
-      dataset = stateInfo.maxCountyInstalls < 30 ? stateInfo.dataSetMed : stateInfo.dataSetHi,
-      legendSet = _.map(_.reverse(dataset), function (setObject) {
+      dataset = stateInfo.maxCountyInstalls < 30 ? stateInfo.dataSetLow : stateInfo.dataSetHi,
+      legendSet = _.map(_.reverse(_.clone(dataset)), function (setObject) {
         return parseInt(setObject.level);
       });
     legendSet.unshift(0);
