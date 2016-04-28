@@ -31,6 +31,11 @@ function loadUsMap(geojson) {
 
   var geojson;
 
+  function highlightAndZoomFeature(e) {
+    highlightFeature(e);
+    zoomToFeature(e);
+  }
+
   function highlightFeature(e) {
     if (lastClickedLayer !== null) {
       geojson.resetStyle(lastClickedLayer);
@@ -65,7 +70,7 @@ function loadUsMap(geojson) {
     layer.on({
       mouseover: highlightFeature,
       mouseout: resetHighlight,
-      click: highlightFeature
+      click: highlightAndZoomFeature
     });
   }
 

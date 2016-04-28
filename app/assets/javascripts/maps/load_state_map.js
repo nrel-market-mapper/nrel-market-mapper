@@ -1,6 +1,6 @@
 function loadStateMap(geojson, data) {
   changeInfoText('county');
-  
+
   var
     stateInfo = {
       maxCountyInstalls: data.max_county_installs,
@@ -51,6 +51,11 @@ function loadStateMap(geojson, data) {
 
   var geojson;
 
+  function highlightAndZoomFeature(e) {
+    highlightFeature(e);
+    zoomToFeature(e);
+  }
+
   function highlightFeature(e) {
     if (lastClickedLayer !== null) {
       geojson.resetStyle(lastClickedLayer);
@@ -85,7 +90,7 @@ function loadStateMap(geojson, data) {
     layer.on({
       mouseover: highlightFeature,
       mouseout: resetHighlight,
-      click: highlightFeature
+      click: highlightAndZoomFeature
     });
   }
 
