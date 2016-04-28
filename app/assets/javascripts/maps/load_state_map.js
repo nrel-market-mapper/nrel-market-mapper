@@ -1,5 +1,30 @@
 function loadStateMap(geojson, data) {
-  var max_county_installs = data.max_county_installs;
+  var
+    stateInfo = {
+      maxCountyInstalls: data.max_county_installs,
+      defaultColor: '#ccebc5',
+      defaultStyle: {
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+      },
+      dataSetHi: [
+        { level: data.max_county_installs * 0.5,  color: '#08589e' },
+        { level: data.max_county_installs * 0.3,  color: '#2b8cbe' },
+        { level: data.max_county_installs * 0.1,  color: '#4eb3d3' },
+        { level: data.max_county_installs * 0.06, color: '#7bccc4' },
+        { level: data.max_county_installs * 0.03, color: '#a8ddb5' }
+      ],
+      dataSetLow: [
+        { level: 10, color: '#08589e' },
+        { level: 8,  color: '#2b8cbe' },
+        { level: 6,  color: '#4eb3d3' },
+        { level: 4,  color: '#7bccc4' },
+        { level: 2,  color: '#a8ddb5' }
+      ]
+    };
   mymap = L.map('map').setView(data.lat_long, data.zoom);
   var lastClickedLayer = null;
 
@@ -8,24 +33,18 @@ function loadStateMap(geojson, data) {
       accessToken: 'pk.eyJ1IjoianVsc2ZlbGljIiwiYSI6ImNpbmFmaHlnazBobjZ2MGt2aWltcHN5ZWIifQ.dXiLrMR-naZgZVExDlTlcA'
   }).addTo(mymap);
 
-  function getColor(d) {
-    return d > (max_county_installs * .8) ? '#08589e' :
-           d > (max_county_installs * .6) ? '#2b8cbe' :
-           d > (max_county_installs * .4) ? '#4eb3d3' :
-           d > (max_county_installs * .2) ? '#7bccc4' :
-           d > (max_county_installs * .1) ? '#a8ddb5' :
-                                            '#ccebc5'
+  function getColor(d, dataset) {
+    for (var i=0; i<dataset.length; i++) {
+      if (d >= dataset[i].level) { return dataset[i].color; }
+    }
+    return stateInfo.defaultColor;
   }
 
-  function style(feature) {
-    return {
-      fillColor: getColor(feature.properties.installs),
-      weight: 2,
-      opacity: 1,
-      color: 'white',
-      dashArray: '3',
-      fillOpacity: 0.7
-    };
+  function getStyle(feature) {
+    var dataset = stateInfo.maxCountyInstalls < 30 ? stateInfo.dataSetLow : stateInfo.dataSetHi;
+    return _.extend(stateInfo.defaultStyle, {
+      fillColor: getColor(feature.properties.installs, dataset)
+    });
   }
 
   var geojson;
@@ -84,15 +103,27 @@ function loadStateMap(geojson, data) {
 
   var legend = L.control({position: 'bottomright'});
 
+  function createLegend() {
+    var
+      dataset = stateInfo.maxCountyInstalls < 30 ? stateInfo.dataSetLow : stateInfo.dataSetHi,
+      legendSet = _.map(_.reverse(_.clone(dataset)), function (setObject) {
+        return parseInt(setObject.level);
+      });
+    legendSet.unshift(0);
+    return legendSet;
+  };
+
+  var getLegendColor = ['#ccebc5', '#a8ddb5', '#7bccc4', '#4eb3d3', '#2b8cbe', '#08589e']
+
   legend.onAdd = function(map) {
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, parseInt(max_county_installs * .1), parseInt(max_county_installs * .2), parseInt(max_county_installs * .4), parseInt(max_county_installs * .6), parseInt(max_county_installs * .8)],
-        labels = [];
+      grades = createLegend();
+      labels = [];
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            '<i style="background:' + getLegendColor[i] + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
     }
 
@@ -100,7 +131,7 @@ function loadStateMap(geojson, data) {
   }
 
   var geojson = L.geoJson(geojson, {
-    style: style,
+    style: getStyle,
     onEachFeature: onEachFeature
   }).addTo(mymap);
 
