@@ -52,7 +52,6 @@ namespace :nrel_api_to_database do
 
   desc "Updates the NREL datebase if there is new solar data"
   task update: :environment do
-
     us = State.find_by(abbr: "US")
 
     service = NrelService.new
