@@ -32,9 +32,9 @@ end
 ```
 The `NrelService.new` creates a PORO that allows us to easily make API calls to
 NREL's endpoints within the application. Two of the endpoints that we can hit are
-the index endpoint and summaries endpoint. In this case we are hitting the summaries
+the index endpoint and summaries endpoint. In the case below, we are hitting the summaries
 endpoint, passing in a hash for the minimum date and maximum date which represent
-the start and end for 2016 in this case.
+the start and end of 2016.
 
 The code:
 
