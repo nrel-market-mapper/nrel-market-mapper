@@ -5,25 +5,25 @@ function updateData(data) {
   updateTotals(data.totals)
 }
 
-function updateCosts(costs) {
+function updateCosts(costs, chart) {
   costs.forEach(function(cost, index) {
-    costByYearChart.data.datasets[0].data[index] = cost;
+    chart.data.datasets[0].data[index] = cost;
   });
-  costByYearChart.update();
+  chart.update();
 }
 
-function updateInstalls(installs) {
+function updateInstalls(installs, chart) {
   installs.forEach(function(install, index){
-    installsChart.data.datasets[0].data[index] = install;
+    chart.data.datasets[0].data[index] = install;
   });
-  installsChart.update();
+  chart.update();
 }
 
-function updateCapacities(sizes) {
+function updateCapacities(sizes, chart) {
   sizes.forEach(function(size, index) {
-    sizeChart.data.datasets[0].data[index] = size;
+    chart.data.datasets[0].data[index] = size;
   });
-  sizeChart.update();
+  chart.update();
 }
 
 function updateTotals(totals) {

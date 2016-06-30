@@ -1,13 +1,3 @@
 <% cache("us_charts", :expires_in => 1.day) do %>
-  <div class="container box-map clearfix">
-    <div class="callout-boxes">
-      <%= render partial: "shared/callout_boxes" %>
-    </div>
-    <div class="map">
-      <%= render partial: "shared/map" %>
-    </div>
-  </div>
-  <section class="us container">
-    <%= render partial: "shared/graphs" %>
-  </section>
+  <%= react_component('Usa') %>
 <% end %>
