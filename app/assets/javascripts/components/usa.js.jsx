@@ -1,11 +1,7 @@
 const Usa = React.createClass({
   getInitialState() {
     return {
-      capacities: [],
-      costs: [],
-      installs: [],
       totals: {},
-      years: [],
     };
   },
   componentWillMount() {
@@ -13,13 +9,7 @@ const Usa = React.createClass({
   },
   componentDidMount() {
     $.getJSON('/api/v1/summaries.json')
-      .done(data => this.setState({
-        capacities: data.capacities,
-        costs: data.costs,
-        installs: data.installs,
-        totals: data.totals,
-        years: data.years
-      }));
+      .done(data => this.setState({ totals: data.totals }));
   },
   findDeviceWidth() {
     let deviceWidth = $(window).width();
@@ -29,17 +19,16 @@ const Usa = React.createClass({
     }
   },
   render() {
+    let totals = this.state.totals;
+
     return (
       <div>
         <div className="container box-map clearfix">
-          <div>
-
-          </div>
           <div className="callout-boxes">
             <div className="row">
-              <CalloutBox title="# of Installs" data={this.state.totals.installs} />
-              <CalloutBox title="Capacity (MW)" data={this.state.totals.capacity} />
-              <CalloutBox title="Avg Cost" data={this.state.totals.cost} />
+              <CalloutBox title="# of Installs" data={totals.installs} />
+              <CalloutBox title="Capacity (MW)" data={totals.capacity} />
+              <CalloutBox title="Avg Cost" data={totals.cost} />
             </div>
           </div>
 
@@ -50,16 +39,13 @@ const Usa = React.createClass({
         <section className="us container">
           <Graph id="installs"
                  graphName="installs"
-                 loadChart={loadInstallsChart}
-                 updateData={updateInstalls} />
+                 loadChart={loadInstallsChart} />
           <Graph id="size"
                  graphName="capacities"
-                 loadChart={loadSizeChart}
-                 updateData={updateCapacities} />
+                 loadChart={loadSizeChart} />
           <Graph id="costByYear"
                  graphName="costs"
-                 loadChart={loadCostByYearChart}
-                 updateData={updateCosts} />
+                 loadChart={loadCostByYearChart} />
         </section>
       </div>
     );

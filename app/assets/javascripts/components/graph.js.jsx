@@ -3,8 +3,14 @@ const Graph = React.createClass({
     let chart = this.props.loadChart();
     $.getJSON('/api/v1/summaries.json')
       .done(data => {
-        this.props.updateData(data[this.props.graphName], chart);
+        this.updateData(data[this.props.graphName], chart);
       });
+  },
+  updateData(data, chart) {
+    data.forEach(function(point, index) {
+      chart.data.datasets[0].data[index] = point;
+    });
+  chart.update();
   },
   render() {
     return (
