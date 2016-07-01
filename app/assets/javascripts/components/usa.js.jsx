@@ -36,16 +36,17 @@ const Usa = React.createClass({
             <Map />
           </div>
         </div>
+
         <section className="us container">
           <Graph id="installs"
                  graphName="installs"
-                 loadChart={loadInstallsChart} />
+                 label="Number of Installs" />
           <Graph id="size"
                  graphName="capacities"
-                 loadChart={loadSizeChart} />
+                 label="Capacity (MW)" />
           <Graph id="costByYear"
                  graphName="costs"
-                 loadChart={loadCostByYearChart} />
+                 label="Cost ($/W)" />
         </section>
       </div>
     );
